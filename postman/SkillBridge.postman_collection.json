@@ -1,0 +1,667 @@
+{
+  "info": {
+    "_postman_id": "a6d2e7da-25c3-4c91-ae28-7f82ac73fd11",
+    "name": "SkillBridge API - Collection Completa",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Coleção completa de testes para a SkillBridge API. Organizada por categorias. Configure as variáveis {{base_url}}, {{auth_token}}, {{usuarioId}}, {{vagaId}}, {{cursoId}} e {{aplicacaoId}} antes de executar."
+  },
+  "item": [
+    {
+      "name": "🔐 Autenticação",
+      "item": [
+        {
+          "name": "Registrar usuário (PKG_USUARIOS)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Usuário Teste\",\n  \"email\": \"usuario.teste{{$randomInt}}@skillbridge.com\",\n  \"senha\": \"SenhaForte123\",\n  \"telefone\": \"11988887777\",\n  \"cidade\": \"São Paulo\",\n  \"uf\": \"SP\",\n  \"objetivoCarreira\": \"Validar integração com Oracle\",\n  \"competencias\": [\n    \"Java\",\n    \"Spring Boot\",\n    \"Oracle\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Invoca a procedure PKG_USUARIOS.INSERIR_USUARIO e retorna o JWT. Copie o token para {{auth_token}}."
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"afonso.pereira@skillbridge.com\",\n  \"senha\": \"SenhaForte123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Autentica um usuário e devolve um JWT. Copie o campo token para a variável {{auth_token}}."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👥 Usuários",
+      "item": [
+        {
+          "name": "Listar (paginação)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/usuarios?page=0&size=10",
+              "host": ["{{base_url}}"],
+              "path": ["usuarios"],
+              "query": [
+                {"key": "page", "value": "0"},
+                {"key": "size", "value": "10"}
+              ]
+            },
+            "description": "Lista usuários com paginação. Use o ID retornado em {{usuarioId}}."
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/usuarios/{{usuarioId}}",
+              "host": ["{{base_url}}"],
+              "path": ["usuarios", "{{usuarioId}}"]
+            },
+            "description": "Busca um usuário específico por ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Novo Usuário\",\n  \"email\": \"novo.usuario@skillbridge.com\",\n  \"senha\": \"SenhaForte123\",\n  \"telefone\": \"11999999999\",\n  \"cidade\": \"São Paulo\",\n  \"uf\": \"SP\",\n  \"objetivoCarreira\": \"Desenvolver carreira em TI\",\n  \"competencias\": [\"Java\", \"Python\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/usuarios",
+              "host": ["{{base_url}}"],
+              "path": ["usuarios"]
+            },
+            "description": "Cria um novo usuário via JPA."
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Usuário Atualizado\",\n  \"email\": \"usuario.atualizado@skillbridge.com\",\n  \"telefone\": \"11988888888\",\n  \"cidade\": \"Rio de Janeiro\",\n  \"uf\": \"RJ\",\n  \"objetivoCarreira\": \"Novo objetivo\",\n  \"competencias\": [\"Java\", \"Spring Boot\", \"Kubernetes\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/usuarios/{{usuarioId}}",
+              "host": ["{{base_url}}"],
+              "path": ["usuarios", "{{usuarioId}}"]
+            },
+            "description": "Atualiza um usuário existente."
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/usuarios/{{usuarioId}}",
+              "host": ["{{base_url}}"],
+              "path": ["usuarios", "{{usuarioId}}"]
+            },
+            "description": "Exclui um usuário."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "💼 Vagas",
+      "item": [
+        {
+          "name": "Listar (paginação)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/vagas?page=0&size=10",
+              "host": ["{{base_url}}"],
+              "path": ["vagas"],
+              "query": [
+                {"key": "page", "value": "0"},
+                {"key": "size", "value": "10"}
+              ]
+            },
+            "description": "Lista vagas com paginação. Use o ID retornado em {{vagaId}}."
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/vagas/{{vagaId}}",
+              "host": ["{{base_url}}"],
+              "path": ["vagas", "{{vagaId}}"]
+            },
+            "description": "Busca uma vaga específica por ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Analista de Eficiência Energética\",\n  \"empresa\": \"Energia Futuro\",\n  \"localidade\": \"Curitiba/PR\",\n  \"requisitos\": [\n    \"Energia Renovável\",\n    \"Analytics\"\n  ],\n  \"responsabilidades\": \"Mapear oportunidades de economia e sugerir melhorias.\",\n  \"salario\": 9800,\n  \"tipoContrato\": \"CLT\",\n  \"formatoTrabalho\": \"HIBRIDO\",\n  \"nivelSenioridade\": \"Pleno\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vagas",
+              "host": ["{{base_url}}"],
+              "path": ["vagas"]
+            },
+            "description": "Cria uma nova vaga. Use o ID retornado em {{vagaId}}."
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Analista Sênior de Eficiência Energética\",\n  \"empresa\": \"Energia Futuro\",\n  \"localidade\": \"São Paulo/SP\",\n  \"requisitos\": [\n    \"Energia Renovável\",\n    \"Analytics\",\n    \"Python\"\n  ],\n  \"responsabilidades\": \"Liderar projetos de eficiência energética.\",\n  \"salario\": 12000,\n  \"tipoContrato\": \"CLT\",\n  \"formatoTrabalho\": \"HIBRIDO\",\n  \"nivelSenioridade\": \"Sênior\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vagas/{{vagaId}}",
+              "host": ["{{base_url}}"],
+              "path": ["vagas", "{{vagaId}}"]
+            },
+            "description": "Atualiza uma vaga existente."
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/vagas/{{vagaId}}",
+              "host": ["{{base_url}}"],
+              "path": ["vagas", "{{vagaId}}"]
+            },
+            "description": "Exclui uma vaga."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📚 Cursos",
+      "item": [
+        {
+          "name": "Listar (paginação)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cursos?page=0&size=10",
+              "host": ["{{base_url}}"],
+              "path": ["cursos"],
+              "query": [
+                {"key": "page", "value": "0"},
+                {"key": "size", "value": "10"}
+              ]
+            },
+            "description": "Lista cursos com paginação. Use o ID retornado em {{cursoId}}."
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cursos/{{cursoId}}",
+              "host": ["{{base_url}}"],
+              "path": ["cursos", "{{cursoId}}"]
+            },
+            "description": "Busca um curso específico por ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Criar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Spring Boot Avançado\",\n  \"area\": \"Programação\",\n  \"duracaoHoras\": 60,\n  \"modalidade\": \"ONLINE\",\n  \"instituicao\": \"SkillBridge Academy\",\n  \"descricao\": \"Curso avançado de Spring Boot com microservices\",\n  \"nivel\": \"Avançado\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/cursos",
+              "host": ["{{base_url}}"],
+              "path": ["cursos"]
+            },
+            "description": "Cria um novo curso."
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Spring Boot Avançado e Microservices\",\n  \"area\": \"Programação\",\n  \"duracaoHoras\": 80,\n  \"modalidade\": \"ONLINE\",\n  \"instituicao\": \"SkillBridge Academy\",\n  \"descricao\": \"Curso completo de Spring Boot com foco em microservices\",\n  \"nivel\": \"Avançado\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/cursos/{{cursoId}}",
+              "host": ["{{base_url}}"],
+              "path": ["cursos", "{{cursoId}}"]
+            },
+            "description": "Atualiza um curso existente."
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/cursos/{{cursoId}}",
+              "host": ["{{base_url}}"],
+              "path": ["cursos", "{{cursoId}}"]
+            },
+            "description": "Exclui um curso."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📝 Aplicações",
+      "item": [
+        {
+          "name": "Listar (paginação)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/aplicacoes?page=0&size=10",
+              "host": ["{{base_url}}"],
+              "path": ["aplicacoes"],
+              "query": [
+                {"key": "page", "value": "0"},
+                {"key": "size", "value": "10"}
+              ]
+            },
+            "description": "Lista aplicações com paginação. Valida que aplicações criadas via procedure são listadas via JPA."
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/aplicacoes/{{aplicacaoId}}",
+              "host": ["{{base_url}}"],
+              "path": ["aplicacoes", "{{aplicacaoId}}"]
+            },
+            "description": "Busca uma aplicação específica por ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Registrar (PKG_VAGAS)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuarioId\": \"{{usuarioId}}\",\n  \"vagaId\": \"{{vagaId}}\",\n  \"status\": \"EM_ANALISE\",\n  \"pontuacaoCompatibilidade\": null,\n  \"comentariosAvaliador\": \"Candidatura criada via procedure\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/aplicacoes",
+              "host": ["{{base_url}}"],
+              "path": ["aplicacoes"]
+            },
+            "description": "Invoca PKG_VAGAS.REGISTRAR_APLICACAO. Se pontuacaoCompatibilidade for null, a procedure calcula automaticamente."
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuarioId\": \"{{usuarioId}}\",\n  \"vagaId\": \"{{vagaId}}\",\n  \"status\": \"APROVADA\",\n  \"pontuacaoCompatibilidade\": 85.5,\n  \"comentariosAvaliador\": \"Candidato aprovado após análise\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/aplicacoes/{{aplicacaoId}}",
+              "host": ["{{base_url}}"],
+              "path": ["aplicacoes", "{{aplicacaoId}}"]
+            },
+            "description": "Atualiza uma aplicação existente."
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/aplicacoes/{{aplicacaoId}}",
+              "host": ["{{base_url}}"],
+              "path": ["aplicacoes", "{{aplicacaoId}}"]
+            },
+            "description": "Exclui uma aplicação."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🤖 IA e Recomendações",
+      "item": [
+        {
+          "name": "Recomendações Básicas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/recomendacoes/{{usuarioId}}",
+              "host": ["{{base_url}}"],
+              "path": ["recomendacoes", "{{usuarioId}}"]
+            },
+            "description": "Gera recomendações inteligentes básicas para um usuário (sem IA)."
+          },
+          "response": []
+        },
+        {
+          "name": "Gerar Recomendações com IA (Gemini)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/ia/recomendacoes/{{usuarioId}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "ia", "recomendacoes", "{{usuarioId}}"]
+            },
+            "description": "Gera recomendações de carreira usando Gemini AI. Salva o resultado na tabela recomendacao_ia. Configure GEMINI_API_KEY no application.properties."
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar Última Recomendação IA",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/ia/recomendacoes/{{usuarioId}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "ia", "recomendacoes", "{{usuarioId}}"]
+            },
+            "description": "Busca a última recomendação gerada para o usuário, retornando resumoPerfil, planoCarreira, cursosRecomendados e vagasRecomendadas."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🎓 IOT - Plano de Estudos",
+      "item": [
+        {
+          "name": "Gerar Plano de Estudos (IA Generativa)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"objetivoCarreira\": \"Tornar-me desenvolvedor Java Sênior especializado em microservices\",\n  \"nivelAtual\": \"Intermediário\",\n  \"competenciasAtuais\": [\n    \"Java\",\n    \"Spring Boot\",\n    \"SQL\",\n    \"Git\"\n  ],\n  \"tempoDisponivelSemana\": 15,\n  \"prazoMeses\": 6,\n  \"areasInteresse\": [\n    \"Microservices\",\n    \"Cloud Computing\",\n    \"Arquitetura de Software\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/planos-estudos/gerar",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "planos-estudos", "gerar"]
+            },
+            "description": "Gera plano de estudos personalizado usando IA Generativa (Gemini). Integração com serviço IOT Python. Demonstra Deep Learning e Prompt Engineering. Requer serviço Python rodando na porta 8000."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "auth_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "usuarioId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "vagaId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "cursoId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "aplicacaoId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

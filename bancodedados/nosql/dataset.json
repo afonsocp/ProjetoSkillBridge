@@ -1,0 +1,95 @@
+{
+    "usuarios": [
+      {
+        "id": "4356128C283A9B26E065020C29DF5990",
+        "nome": "Afonso Pereira",
+        "email": "afonso.pereira@skillbridge.com",
+        "competencias": "Java, Spring Boot, SQL, Microservices",
+        "cidade": "Sao Paulo",
+        "uf": "SP",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C283B9B26E065020C29DF5990",
+        "nome": "Bianca Rodrigues",
+        "email": "bianca.rodrigues@skillbridge.com",
+        "competencias": "Python, Data Analysis, Power BI, SQL",
+        "cidade": "Campinas",
+        "uf": "SP",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C283C9B26E065020C29DF5990",
+        "nome": "Carlos Lima",
+        "email": "carlos.lima@skillbridge.com",
+        "competencias": "UX, UI, Figma, Design Thinking",
+        "cidade": "Rio de Janeiro",
+        "uf": "RJ",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C283D9B26E065020C29DF5990",
+        "nome": "Daniela Martins",
+        "email": "daniela.martins@skillbridge.com",
+        "competencias": "Scrum, Kanban, OKRs, Lideranca",
+        "cidade": "Belo Horizonte",
+        "uf": "MG",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C28439B26E065020C29DF5990",
+        "nome": "Julia Oliveira",
+        "email": "julia.oliveira@skillbridge.com",
+        "competencias": "Machine Learning, Python, NLP",
+        "cidade": "Salvador",
+        "uf": "BA",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C283F9B26E065020C29DF5990",
+        "nome": "Fernanda Alves",
+        "email": "fernanda.alves@skillbridge.com",
+        "competencias": "Ciberseguranca, ISO27001, Zero Trust",
+        "cidade": "Recife",
+        "uf": "PE",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C28409B26E065020C29DF5990",
+        "nome": "Gustavo Ferreira",
+        "email": "gustavo.ferreira@skillbridge.com",
+        "competencias": "RPA, Automacao, VBA, Python",
+        "cidade": "Porto Alegre",
+        "uf": "RS",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C28419B26E065020C29DF5990",
+        "nome": "Helena Moraes",
+        "email": "helena.moraes@skillbridge.com",
+        "competencias": "People Analytics, SQL, storytelling",
+        "cidade": "Florianopolis",
+        "uf": "SC",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C28429B26E065020C29DF5990",
+        "nome": "Igor Santos",
+        "email": "igor.santos@skillbridge.com",
+        "competencias": "Javascript, Node.js, React, APIs",
+        "cidade": "Fortaleza",
+        "uf": "CE",
+        "dataCadastro": "2025-11-11"
+      },
+      {
+        "id": "4356128C283E9B26E065020C29DF5990",
+        "nome": "Emanuel Souza",
+        "email": "emanuel.souza@skillbridge.com",
+        "competencias": "DevOps, Kubernetes, AWS, Terraform",
+        "cidade": "Curitiba",
+        "uf": "PR",
+        "dataCadastro": "2025-11-11"
+      }
+    ]
+  }
+  
