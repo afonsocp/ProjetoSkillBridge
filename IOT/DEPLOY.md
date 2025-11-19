@@ -7,13 +7,13 @@ Este documento contém todas as informações necessárias para acessar e testar
 ## 🔗 Links dos Deploys
 
 ### API Java Spring Boot
-**URL Base:** `https://[SEU-DEPLOY-AQUI].herokuapp.com` ou `https://[SEU-DEPLOY-AQUI].railway.app`
+**URL Base:** `https://projetojavaskillbridge.onrender.com`
 
-**Status:** ⚠️ **Aguardando deploy** - Substitua pela URL real após fazer o deploy
+**Status:** ✅ **Deploy realizado no Render**
 
-**Documentação Swagger:** `https://[URL-DA-API]/swagger-ui.html`
+**Documentação Swagger:** `https://projetojavaskillbridge.onrender.com/swagger-ui.html`
 
-**Health Check:** `https://[URL-DA-API]/actuator/health`
+**Health Check:** `https://projetojavaskillbridge.onrender.com/actuator/health`
 
 ---
 
@@ -81,7 +81,7 @@ jdbc:oracle:thin:@//oracle.fiap.com.br:1521/ORCL
 
 #### Verificar se está online:
 ```bash
-curl https://[URL-DA-API]/actuator/health
+curl https://projetojavaskillbridge.onrender.com/actuator/health
 ```
 
 **Resposta esperada:**
@@ -92,13 +92,13 @@ curl https://[URL-DA-API]/actuator/health
 ```
 
 #### Acessar Swagger UI:
-1. Abra no navegador: `https://[URL-DA-API]/swagger-ui.html`
+1. Abra no navegador: `https://projetojavaskillbridge.onrender.com/swagger-ui.html`
 2. Explore os endpoints disponíveis
 3. Teste diretamente pela interface
 
 #### Registrar novo usuário:
 ```bash
-curl -X POST https://[URL-DA-API]/auth/register \
+curl -X POST https://projetojavaskillbridge.onrender.com/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "email": "teste@example.com",
@@ -112,7 +112,7 @@ curl -X POST https://[URL-DA-API]/auth/register \
 
 #### Fazer login:
 ```bash
-curl -X POST https://[URL-DA-API]/auth/login \
+curl -X POST https://projetojavaskillbridge.onrender.com/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "teste@example.com",
@@ -130,7 +130,7 @@ curl -X POST https://[URL-DA-API]/auth/login \
 
 #### Listar vagas (requer autenticação):
 ```bash
-curl -X GET https://[URL-DA-API]/api/v1/vagas \
+curl -X GET https://projetojavaskillbridge.onrender.com/api/v1/vagas \
   -H "Authorization: Bearer [SEU-TOKEN-JWT]"
 ```
 
@@ -179,7 +179,7 @@ curl -X POST https://[URL-DO-IOT]/gerar-plano-estudos \
 1. **Obter token JWT** (via `/auth/login`)
 2. **Gerar plano de estudos via API Java:**
 ```bash
-curl -X POST https://[URL-DA-API]/api/v1/planos-estudos/gerar \
+curl -X POST https://projetojavaskillbridge.onrender.com/api/v1/planos-estudos/gerar \
   -H "Authorization: Bearer [SEU-TOKEN-JWT]" \
   -H "Content-Type: application/json" \
   -d '{
@@ -220,7 +220,7 @@ SPRING_DATASOURCE_URL=jdbc:oracle:thin:@//oracle.fiap.com.br:1521/ORCL
 SECURITY_JWT_SECRET=seu-secret-seguro-minimo-32-caracteres-aqui
 SPRING_AI_GEMINI_API_KEY=AIzaSyCuOLheV5Rc6C0V_yJArFjDFQxjyzN971s
 SPRING_AI_GEMINI_MODEL=gemini-2.0-flash-exp
-IOT_SERVICE_URL=https://[URL-DO-SERVICO-IOT]
+IOT_SERVICE_URL=https://[URL-DO-SERVICO-IOT] (configure depois com a URL real do IoT)
 PORT=8080
 ```
 
@@ -282,7 +282,9 @@ Em caso de problemas:
 
 ---
 
-**Última atualização:** [DATA]
+**Última atualização:** Janeiro 2025
 
-**Status:** ⚠️ **Aguardando URLs de deploy reais**
+**Status:** 
+- ✅ **API Java:** Deploy realizado no Render
+- ⚠️ **Serviço IoT:** Aguardando deploy
 

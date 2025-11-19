@@ -171,3 +171,13 @@ Tarefas:
             "✅ Avaliação do perfil: adequado — já possui conhecimentos em Java e Python, basta aprofundar em REST e banco de dados."
         )
         return {"analise_vaga": resumo_falso}
+
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint"""
+    return {
+        "status": "ok",
+        "servico": "IOT - Geração de Plano de Estudos",
+        "modelo_ia": "Gemini 2.5 Flash"
+    }
